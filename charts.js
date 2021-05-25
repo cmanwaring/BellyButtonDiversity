@@ -76,18 +76,18 @@ function buildCharts(sample) {
 
     var yticks = filteredSamples.otu_ids.map((otu) =>"OTU ID: " + otu).slice(0,10).reverse();
     console.log(yticks);
-    var xticks = 
+    var xticks = filteredSamples.sample_values.map((val) => parseInt(val)).slice(0,10).reverse();
+    console.log(yticks);
 
     // 8. Create the trace for the bar chart. 
-    var barData = [
-
-      
-    ];
+    var barData = [{x: xticks, y: yticks, type: "bar"}];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-     
+      title: "Betty Button Bacterial Composition",
+      xaxis: {title: "Sample Values"},
+      yaxis: {title: "OTU ID"}
     };
     // 10. Use Plotly to plot the data with the layout. 
-    
+    Plotly.newPlot("bar", barData, barLayout)
   });
 }
