@@ -98,22 +98,32 @@ function buildCharts(sample) {
       yaxis: {title: "OTU ID"}
     };
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", barData, barLayout)
+    Plotly.newPlot("bar", barData, barLayout);
 
     // Create Bubble chart.
+    var bubbleSize = sample_values 
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
-      x: otuTicks,
+      x: otu_ids,
       y: sampleValueTicks,
+      mode: 'markers',
       text: otuLabels,
+      marker: {
+        size: sampleValueTicks.reverse(),
+        color: otu_ids,
+        colorscale: "Earth",
+      }
     }];
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
+      title: "Bubble chart reflecting populations of top 10 OTU samples",
+      xaxis: {title:"OTU ID"},
+      yaxis: {title: "Sample Values"}
       
     };
 
     // 3. Use Plotly to plot the data with the layout.
-    // Plotly.newPlot(); 
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
   });
 }
