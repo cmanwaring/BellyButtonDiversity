@@ -78,13 +78,19 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    var yticks = otu_ids.map((widget) =>"OTU " + widget).slice(0,10).reverse();
-    console.log(yticks);
-    var xticks = sample_values.map((widget) => parseInt(widget)).slice(0,10).reverse();
-    console.log(xticks);
-    var hoverText = otu_labels.slice(0,10).reverse();
+    var otuTicks = otu_ids.map((widget) =>"OTU " + widget).slice(0,10).reverse();
+    console.log(otuTicks);
+    var sampleValueTicks = sample_values.map((widget) => parseInt(widget)).slice(0,10).reverse();
+    console.log(sampleValueTicks);
+    var otuLabels = otu_labels.slice(0,10).reverse();
     // 8. Create the trace for the bar chart. 
-    var barData = [{x: xticks, y: yticks, type: "bar", text: hoverText, orientation: "h"}];
+    var barData = [{
+      x: sampleValueTicks,
+      y: otuTicks,
+      type: "bar",
+      text: otuLabels,
+      orientation: "h"
+    }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: "Betty Button Bacterial Composition",
@@ -93,5 +99,21 @@ function buildCharts(sample) {
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout)
+
+    // Create Bubble chart.
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = [{
+      x: otuTicks,
+      y: sampleValueTicks,
+      text: otuLabels,
+    }];
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+      
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    // Plotly.newPlot(); 
   });
 }
