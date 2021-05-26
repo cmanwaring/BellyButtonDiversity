@@ -93,19 +93,22 @@ function buildCharts(sample) {
     }];
     // 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Betty Button Bacterial Composition",
+      title: "Top 10 Bacteria Cultures Found",
       xaxis: {title: "Sample Values"},
       yaxis: {title: "OTU ID"}
     };
 
+    // Create merkerSize variable
+    var markerSize = sample_values;
+
     // 1. Create the trace for the bubble chart.
     var bubbleData = [{
       x: otu_ids,
-      y: sampleValueTicks,
+      y: sample_values,
       mode: 'markers',
-      text: otuLabels,
+      text: otu_labels,
       marker: {
-        size: sampleValueTicks.reverse(),
+        size: markerSize,
         color: otu_ids,
         colorscale: "Earth",
       }
@@ -113,11 +116,10 @@ function buildCharts(sample) {
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bubble chart reflecting populations of top 10 OTU samples",
-      xaxis: {title:"OTU ID"},
-      yaxis: {title: "Sample Values"}
+      title: "Bacteria Cultures Per Sample",
+      xaxis: {title:"OTU ID"}
       
-    };
+    }; 
 
     // Create gauge chart
     // Create a variable that holds the samples array. 
@@ -154,12 +156,23 @@ function buildCharts(sample) {
       value: wFreq,
       type: "indicator",
       mode: "gauge+number",
-      text: "Belly Button Washing Frequency"
+      text: "Belly Button Washing Frequency",
+      gauge: {
+        axis: { range: [null, 10] },
+        bar: {color: "black"},
+        steps: [
+          { range: [0, 2], color: "red" },
+          { range: [2, 4], color: "orange" },
+          { range: [4, 6], color: "yellow" },
+          { range: [6, 8], color: "green" },
+          { range: [8, 10], color: "blue" },
+        ]
+      }
     }];
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-     
+     title: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week"
     };
     // Use Plotly to plot the bar data and layout.
     Plotly.newPlot("bar", barData, barLayout);
