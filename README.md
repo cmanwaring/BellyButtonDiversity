@@ -1,1 +1,3 @@
 # BellyButtonDiversity
+## Purpose
+The purpose of this project was to take data from 153 individuals that participated in a study examining belly button bacteria, and create an interactive webpage that can display individual data charts for each participant in the study. We have included a bar chart that shows the top 10 bacteria samples by prevalance, a gauge chart that indicates the weekly frequency in which the participant washes their belly button, and a bubble chart that indicates sample sizes of all bacteria present in the participants belly button. We have also added some styling to the webpage to make it more visually appealing.
