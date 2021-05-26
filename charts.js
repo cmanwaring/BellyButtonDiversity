@@ -144,15 +144,18 @@ function buildCharts(sample) {
     // console.log(sample_values);
 
     // 3. Create a variable that holds the washing frequency.
-    var wFreq = parseFloat(metaData.)
+    var wFreq = parseFloat(firstFilteredMeta.wfreq);
+    console.log(wFreq);
     // Create the yticks for the bar chart.
-
-
+    // done
     
     // 4. Create the trace for the gauge chart.
-    var gaugeData = [
-     
-    ];
+    var gaugeData = [{
+      value: wFreq,
+      type: "indicator",
+      mode: "gauge+number",
+      text: "Belly Button Washing Frequency"
+    }];
     
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
